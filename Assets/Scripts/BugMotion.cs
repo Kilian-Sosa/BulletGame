@@ -13,4 +13,13 @@ public class BugMotion : MonoBehaviour {
         transform.up = direction;
         GetComponent<Rigidbody2D>().velocity = direction * bugSpeed;
     }
+
+    void OnTriggerEnter2D(Collider2D collision) {
+        Destroy(gameObject);
+    }
+
+    void OnDestroy() {
+        GameObject.Find("GameManager").GetComponent<GameManager>().kills++;
+        GameObject.Find("GameManager").GetComponent<GameManager>().UpdateKills();
+    }
 }

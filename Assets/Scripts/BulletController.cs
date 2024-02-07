@@ -8,10 +8,14 @@ public class BulletController : MonoBehaviour {
     }
 
     void Update() {
-        
+
     }
 
-    private void OnBecameInvisible() {
+    void OnBecameInvisible() {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
         Destroy(gameObject);
     }
 }
