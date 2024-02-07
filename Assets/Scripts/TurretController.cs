@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour {
     [SerializeField] GameObject bulletPrefab, spawnPoint;
+    Vector2 mousePosition, worldMousePosition, pointDirection;
+
 
     void Start() {
         
@@ -9,6 +11,13 @@ public class TurretController : MonoBehaviour {
 
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) Instantiate(bulletPrefab, spawnPoint.transform);
+        mousePosition = Input.mousePosition;
+        worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        pointDirection = worldMousePosition - (Vector2) transform.position;
+        transform.up = pointDirection.normalized;
+        
+        if (Input.GetMouseButtonDown(0)) {
+            GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform);
+        }
     }
 }
