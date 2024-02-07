@@ -18,6 +18,7 @@ public class TurretController : MonoBehaviour {
         
         if (Input.GetMouseButtonDown(0)) {
             GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform);
+            bullet.transform.SetParent(null);
         }
     }
 }
