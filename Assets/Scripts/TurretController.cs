@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour {
     [SerializeField] GameObject bulletPrefab, spawnPoint;
+    [SerializeField] float bulletSpeed = 10;
     Vector2 mousePosition, worldMousePosition, pointDirection;
 
 
@@ -19,6 +20,7 @@ public class TurretController : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform);
             bullet.transform.SetParent(null);
+            bullet.GetComponent<Rigidbody2D>().velocity = pointDirection.normalized * bulletSpeed;
         }
     }
 }
