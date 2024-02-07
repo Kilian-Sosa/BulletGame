@@ -20,4 +20,5 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateShots() {
         shotsText.text = $"Disparos: {shots}";
+    }
 }
