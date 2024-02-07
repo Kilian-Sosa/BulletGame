@@ -11,7 +11,9 @@ public class Spawner : MonoBehaviour {
 
     IEnumerator GenerateEnemy() {
         while (true) {
-            GameObject newEnemy = Instantiate(enemy);
+            float randomPosY = Random.Range(transform.position.y - spawnLineLength, transform.position.y + spawnLineLength);
+            GameObject newEnemy = Instantiate(enemy, new Vector2(transform.localPosition.x, randomPosY), Quaternion.identity);
+            newEnemy.transform.SetParent(null);
             yield return new WaitForSeconds(timeBetweenGenerations);
         }
     }

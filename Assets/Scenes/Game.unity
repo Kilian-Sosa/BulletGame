@@ -2612,7 +2612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 213159350}
   timeBetweenGenerations: 3
-  spawnLineLength: 2
+  spawnLineLength: 5
 --- !u!4 &1920535717
 Transform:
   m_ObjectHideFlags: 0
