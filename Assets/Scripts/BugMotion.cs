@@ -1,9 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class BugMotion : MonoBehaviour {
     [SerializeField] float bugSpeed = 5;
+    [SerializeField] float circleAttackRadius = 0.1f, attackDelay = 0.68f;
+    [SerializeField] int damageValue = 10;
+    [SerializeField] GameObject hitPoint;
     [SerializeField] GameObject target;
     [SerializeField] float detectionDistance = 0.5f, offsetDistance = 0.2f;
+    bool executingCoroutine = false;
+
     Rigidbody2D rb;
     Animator animator;
 
@@ -21,6 +27,7 @@ public class BugMotion : MonoBehaviour {
         else {
             SetAnimation("attacking");
             rb.velocity = Vector2.zero;
+            if (!executingCoroutine) StartCoroutine(WaitAndAttack());
         }
     }
 
@@ -42,6 +49,22 @@ public class BugMotion : MonoBehaviour {
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
+    IEnumerator WaitAndAttack() {
+        executingCoroutine = true;
+        yield return new WaitForSeconds(attackDelay);
+        Hit();
+        executingCoroutine = false;
+    }
+
+    public void Hit() {
+        Collider2D collider = Physics2D.OverlapCircle(hitPoint.transform.position, circleAttackRadius);
+        if (collider != null) 
+            if (collider.CompareTag("Player")) GameObject.Find("GameManager").GetComponent<GameManager>().TakeDamage(damageValue);
+    }
+    void OnDrawGizmos() {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(hitPoint.transform.position, circleAttackRadius);
+    }
 
     void OnTriggerEnter2D(Collider2D collision) {
         Destroy(gameObject);
