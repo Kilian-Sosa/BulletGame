@@ -9,7 +9,7 @@ public class BugMotion : MonoBehaviour {
 
     void Start() {
         target = GameObject.FindGameObjectWithTag("Player");
-        rb = target.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
     }
 
