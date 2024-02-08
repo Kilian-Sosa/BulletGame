@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     [SerializeField] Texture2D cursorTarget;
     [SerializeField] TextMeshProUGUI shotsText, killsText;
+    [SerializeField] GameObject dialoguesObject;
     public int shots = 0, kills = 0;
     bool canShoot = true;
 
@@ -26,11 +27,15 @@ public class GameManager : MonoBehaviour {
                     Debug.Log("¡¡BOLA CON PINCHOS!!");
                     DisableFire();
                     Destroy(hit.collider.gameObject);
+                    dialoguesObject.SetActive(true);
+                    dialoguesObject.GetComponent<DialogueController>().StartDialogue("spikedball_item");
                 }
                 if (hit.collider.CompareTag("sawblade_item")) {
                     Debug.Log("¡¡DISCO DE SIERRA!!");
                     DisableFire();
                     Destroy(hit.collider.gameObject);
+                    dialoguesObject.SetActive(true);
+                    dialoguesObject.GetComponent<DialogueController>().StartDialogue("sawblade_item");
                 }
             }
         }
