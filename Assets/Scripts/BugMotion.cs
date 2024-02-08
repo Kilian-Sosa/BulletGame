@@ -50,5 +50,6 @@ public class BugMotion : MonoBehaviour {
     void OnDestroy() {
         GameObject.Find("GameManager").GetComponent<GameManager>().kills++;
         GameObject.Find("GameManager").GetComponent<GameManager>().UpdateKills();
+        GameObject.Find("Instantiator").GetComponent<ItemCreator>().GenerateItem(transform);
     }
 }
