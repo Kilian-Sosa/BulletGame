@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour {
                     dialoguesObject.SetActive(true);
                     dialoguesObject.GetComponent<DialogueController>().StartDialogue("sawblade_item");
                 }
-            }
+                if (hit.collider.CompareTag("Enemy")) EnableFire();
+            }else EnableFire();
         }
     }
 

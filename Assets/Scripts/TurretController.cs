@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TurretController : MonoBehaviour {
@@ -17,14 +18,16 @@ public class TurretController : MonoBehaviour {
         worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         pointDirection = worldMousePosition - (Vector2) transform.position;
         transform.up = pointDirection.normalized;
+        if (Input.GetMouseButtonDown(0)) StartCoroutine(checkShootAbility());
+    }
+
+    IEnumerator checkShootAbility() {
+        yield return new WaitForEndOfFrame();
         canShoot = GameObject.Find("GameManager").GetComponent<GameManager>().GetShootingStatus();
-        
-        if (Input.GetMouseButtonDown(0) && canShoot) {
+        if (canShoot) {
             GameObject bullet = Instantiate(bulletPrefab, spawnPoint.transform);
             bullet.transform.SetParent(null);
             bullet.GetComponent<Rigidbody2D>().velocity = pointDirection.normalized * bulletSpeed;
         }
-
-        GameObject.Find("GameManager").GetComponent<GameManager>().EnableFire();
     }
 }
