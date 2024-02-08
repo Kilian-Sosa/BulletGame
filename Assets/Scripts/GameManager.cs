@@ -1,12 +1,16 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] Texture2D cursorTarget;
     [SerializeField] TextMeshProUGUI shotsText, killsText;
     [SerializeField] GameObject dialoguesObject;
+    [SerializeField] GameObject HPBar;
+
     public int shots = 0, kills = 0;
     bool canShoot = true;
+    public float life = 100, maxLife = 100;
 
     void Start() {
         Vector2 hotspot = new Vector2 (cursorTarget.width/2, cursorTarget.height/2);
@@ -18,6 +22,8 @@ public class GameManager : MonoBehaviour {
 
 
     void Update() {
+        HPBar.GetComponent<Image>().fillAmount = life / maxLife;
+
         if (Input.GetMouseButton(0)) {
             Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(clickPos, Vector2.zero);
@@ -55,4 +61,12 @@ public class GameManager : MonoBehaviour {
     public void EnableFire() { canShoot = true; }
 
     public bool GetShootingStatus() { return canShoot; }
+
+    public void TakeDamage(int damage) {
+        life = Mathf.Clamp(life - damage, 0, maxLife);
+    }
+
+    public void Heal(int lifeRecovered) {
+        life = Mathf.Clamp(life + lifeRecovered, 0, maxLife);
+    }
 }
