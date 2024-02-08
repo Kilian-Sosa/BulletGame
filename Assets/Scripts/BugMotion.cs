@@ -37,9 +37,9 @@ public class BugMotion : MonoBehaviour {
 
         Debug.DrawLine((Vector2) transform.position + direction * offsetDistance, endPoint, Color.black);
 
-        RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2)transform.position + direction * offsetDistance, direction, detectionDistance - offsetDistance);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + direction * offsetDistance, direction, detectionDistance - offsetDistance);
 
-        return raycastHit2D.collider != null && raycastHit2D.collider.CompareTag("Player");
+        return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
 
