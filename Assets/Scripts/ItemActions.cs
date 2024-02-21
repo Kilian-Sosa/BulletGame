@@ -11,9 +11,7 @@ public class ItemActions : MonoBehaviour {
     }
 
     public void SpawnSaw() {
-        print("a");
         if (GameObject.FindGameObjectWithTag("SawTrap") == null) {
-            print("b");
             Instantiate(sawTrap);
             Destroy(this.gameObject);
         }
