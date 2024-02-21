@@ -16,7 +16,6 @@ public class Spawner : MonoBehaviour {
             GameObject newEnemy = Instantiate(enemy, new Vector2(transform.localPosition.x, randomPosY), Quaternion.identity);
             newEnemy.transform.SetParent(null);
             newEnemy.GetComponent<BugMotion>().bugSpeed = enemyVelocity;
-            print(newEnemy.GetComponent<BugMotion>().bugSpeed);
             yield return new WaitForSeconds(timeBetweenGenerations);
         }
     }
