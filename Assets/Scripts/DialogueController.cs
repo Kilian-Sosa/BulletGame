@@ -22,6 +22,7 @@ public class DialogueController : MonoBehaviour {
 
     public void EndDialogue() {
         gameObject.SetActive(false);
+        StopCoroutine(WriteLine());
     }
 
     IEnumerator WriteLine() {

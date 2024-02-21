@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemCreator : MonoBehaviour {
     [SerializeField] GameObject[] prefabs;
     [SerializeField] float disappearTime = 2f;
-    public float probability = 0.1f;
+    public float probability = 0.25f;
 
     void Start() {
         
@@ -19,8 +19,8 @@ public class ItemCreator : MonoBehaviour {
         int options = prefabs.Length;
         int randomOption = Random.Range(0, options);
 
-        float randomProb = Random.Range(0, 1);
-
+        float randomProb = Random.Range(0f, 1f);
+        print(randomProb);
         if (randomProb <= probability) { 
             GameObject newItem = Instantiate(prefabs[randomOption], dropPosition);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("DroppedItems"), LayerMask.NameToLayer("Default"));
