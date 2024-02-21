@@ -66,6 +66,11 @@ public class BugMotion : MonoBehaviour {
         Gizmos.DrawWireSphere(hitPoint.transform.position, circleAttackRadius);
     }
 
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision != null && collision.collider.CompareTag("Trap")) Destroy(gameObject);
+    }
+
+
     void OnTriggerEnter2D(Collider2D collision) {
         Destroy(gameObject);
     }
