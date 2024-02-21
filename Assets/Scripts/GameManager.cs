@@ -30,14 +30,14 @@ public class GameManager : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(clickPos, Vector2.zero);
 
             if (hit.collider != null) {
-                if (hit.collider.CompareTag("spikeball_item")) {
+                if (hit.collider.CompareTag("spikeball_item") && !dialoguesObject.activeSelf) {
                     Debug.Log("¡¡BOLA CON PINCHOS!!");
                     DisableFire();
                     Destroy(hit.collider.gameObject);
                     dialoguesObject.SetActive(true);
                     dialoguesObject.GetComponent<DialogueController>().StartDialogue("spikedball_item");
                 }
-                if (hit.collider.CompareTag("sawblade_item")) {
+                if (hit.collider.CompareTag("sawblade_item") && !dialoguesObject.activeSelf) {
                     Debug.Log("¡¡DISCO DE SIERRA!!");
                     DisableFire();
                     Destroy(hit.collider.gameObject);

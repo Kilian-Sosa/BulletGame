@@ -8,15 +8,6 @@ public class DialogueController : MonoBehaviour {
     [SerializeField] int lineIndex = 0;
     [SerializeField] TextMeshProUGUI dialogueText;
 
-    void Start() {
-        
-    }
-
-
-    void Update() {
-        
-    }
-
     public void StartDialogue(string item) {
         dialogueText.text = "";
 
