@@ -24,15 +24,19 @@ public class ItemCreator : MonoBehaviour {
         if (randomProb <= probability) { 
             GameObject newItem = Instantiate(prefabs[randomOption], dropPosition);
             newItem.transform.SetParent(null);
-            StartCoroutine(Disappear(newItem));
+            StartCoroutine(Despawn(newItem));
         }
     }
 
-    IEnumerator Disappear(GameObject item) {
-        while (true) {
-            yield return new WaitForSeconds(disappearTime);
-            if (item != null) Destroy(item);
-            StopCoroutine("Disappear");
+    IEnumerator Despawn(GameObject item) {
+        yield return new WaitForSeconds(disappearTime);
+        if (item == null) yield break;
+        Color itemColor = item.GetComponent<SpriteRenderer>().color;
+        for (float transparency = 0.01f; transparency < 1; transparency += 0.01f) {
+            Color colorChange = new Color(itemColor.r, itemColor.g, itemColor.b, itemColor.a - transparency);
+            item.GetComponent<SpriteRenderer>().color = colorChange;
+            yield return new WaitForSeconds(0.003f);
         }
+        if (item != null) Destroy(item);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
     [SerializeField] GameObject enemy;
     public float timeBetweenGenerations = 1, spawnLineLength = 2;
-    private float enemyVelocity = 5f;
+    private float enemyVelocity = 1f;
 
     void Start() {
         StartCoroutine(GenerateEnemy());

@@ -7,7 +7,7 @@ public class BugMotion : MonoBehaviour {
     [SerializeField] GameObject hitPoint;
     [SerializeField] GameObject target;
     [SerializeField] float detectionDistance = 0.5f, offsetDistance = 0.2f;
-    public float bugSpeed = 5;
+    public float bugSpeed = 1;
     bool executingCoroutine = false;
 
     Rigidbody2D rb;
