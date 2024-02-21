@@ -17,4 +17,8 @@ public class Spawner : MonoBehaviour {
             yield return new WaitForSeconds(timeBetweenGenerations);
         }
     }
+
+    public void reduceSpawnPeriod(float reduceSpawnTime) {
+        if (timeBetweenGenerations >= 0.5) timeBetweenGenerations *= reduceSpawnTime;
+    }
 }

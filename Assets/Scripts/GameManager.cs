@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] TextMeshProUGUI shotsText, killsText;
     [SerializeField] GameObject dialoguesObject;
     [SerializeField] GameObject HPBar;
+    [SerializeField] float reduceSpawnCut = 10, reduceSpawnTime = 0.25f;
 
     public int shots = 0, kills = 0;
     bool canShoot = true;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateKills() {
         killsText.text = $"Muertes: {kills}";
+        if (kills % reduceSpawnCut == 0) GameObject.Find("SpawnPoint").GetComponent<Spawner>().reduceSpawnPeriod(reduceSpawnTime);
     }
 
     public void DisableFire() { canShoot = false; }
