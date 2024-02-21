@@ -23,6 +23,7 @@ public class ItemCreator : MonoBehaviour {
 
         if (randomProb <= probability) { 
             GameObject newItem = Instantiate(prefabs[randomOption], dropPosition);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("DroppedItems"), LayerMask.NameToLayer("Default"));
             newItem.transform.SetParent(null);
             StartCoroutine(Despawn(newItem));
         }
